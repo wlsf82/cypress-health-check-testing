@@ -1,0 +1,17 @@
+name: Cypress Health Check Testing
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # runs twice a day (at noon and midnight - UTC)
+    - cron: '0 12,00 * * *'
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress tests
+        uses: cypress-io/github-action@v6
